@@ -7,7 +7,7 @@ resource "aws_instance" "mongo_db" {
 
     local.tags, {
 
-        Name = "${local.common_name}-mongodb
+        Name = "${local.common_name}-mongodb"
     }
     
   )
@@ -54,7 +54,7 @@ resource "aws_instance" "redis" {
 
     local.tags, {
 
-        Name = "${local.common_name}-redis
+        Name = "${local.common_name}-redis"
     }
     
   )
@@ -100,7 +100,7 @@ resource "aws_instance" "rabbitmq" {
 
     local.tags, {
 
-        Name = "${local.common_name}-rabbitmq
+        Name = "${local.common_name}-rabbitmq"
     }
     
   )
