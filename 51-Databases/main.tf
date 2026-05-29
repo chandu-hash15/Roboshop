@@ -1,3 +1,7 @@
+# ==========================================================
+# MONGODB
+# ==========================================================
+
 resource "aws_instance" "mongo_db" {
   ami                    = local.ami_id
   instance_type          = var.instance_type
@@ -36,7 +40,8 @@ resource "terraform_data" "mongodb" {
       "sudo sh /tmp/bootstrap.sh mongodb"
     ]
   }
-}
+
+}  # ✅ CLOSED mongodb BLOCK
 
 
 # ==========================================================
@@ -81,7 +86,8 @@ resource "terraform_data" "redis" {
       "sudo sh /tmp/bootstrap.sh redis"
     ]
   }
-}
+
+}  # ✅ CLOSED redis BLOCK
 
 
 # ==========================================================
@@ -126,4 +132,5 @@ resource "terraform_data" "rabbitmq" {
       "sudo sh /tmp/bootstrap.sh rabbitmq"
     ]
   }
-}
+
+}  # ✅ CLOSED rabbitmq BLOCK
