@@ -9,7 +9,7 @@ dnf install ansible -y
 
 echo "Running ansible-pull for $component..."
 
-ansible-pull -U https://github.com/chandu-hash15/Terra_Ansi_Roles_Integration.git \
+ansible-pull -U https://github.com/chandu-hash15/Terra_Ansi_Roles-_Integration.git\
   -i localhost, \
   -e "component=$component" \
   main.yaml -vv
