@@ -4,7 +4,7 @@ variable "instance_type" {
 }
 
 
-variable "Enviroment" {
+variable "Environment" {
 
     default = "Dev"
 }

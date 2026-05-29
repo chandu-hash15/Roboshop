@@ -1,6 +1,6 @@
 locals {
     ami_id = data.aws_ami.joindevops.id
-    common_name = "${Var.Project}/${Var.Enviroment}"
+    common_name = "${var.Project}/${var.Environment}"
     
     private_subnet_ids = [
         data.aws_ssm_parameter.private_subnet-1_id,
