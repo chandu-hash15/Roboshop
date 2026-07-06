@@ -18,7 +18,7 @@
 
  REPO_DIR=/opt/roboshop/ansible
 
- ANSIBLE_DIR=Terra_Ansi_Roles-_Integration
+ ANSIBLE_DIR=Terra_Ansi_Roles_Integration
 
  mkdir -p $REPO_DIR
 
