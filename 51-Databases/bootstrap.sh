@@ -1,17 +1,51 @@
-#!/bin/bash
+ #!/bin/bash
 
-set -euo pipefail
+# set -euo pipefail
 
-component=$1
+ component=$1
 
-echo "Installing Ansible..."
-dnf install ansible -y
+# echo "Installing Ansible..."
+ dnf install ansible -y
 
-echo "Running ansible-pull for $component..."
+# echo "Running ansible-pull for $component..."
 
-ansible-pull -U https://github.com/chandu-hash15/Terra_Ansi_Roles-_Integration.git\
-  -i localhost, \
-  -e "component=$component" \
-  main.yaml -vv
+# ansible-pull -U https://github.com/chandu-hash15/Terra_Ansi_Roles-_Integration.git\
+#   -i localhost, \
+#   -e "component=$component" \
+#   main.yaml -vv
 
-  
+ REPO_URL=https://github.com/chandu-hash15/Terra_Ansi_Roles-_Integration.git
+
+ REPO_DIR=/opt/roboshop/ansible
+
+ ANSIBLE_DIR=Terra_Ansi_Roles-_Integration
+
+ mkdir -p $REPO_DIR
+
+ mkdir -p /var/roboshop/ansible
+
+ touch ansible.log
+
+
+ cd $REPO_DIR
+
+ # check if ansible directory is already exists or not
+
+ if [ -d   $ANSIBLE_DIR ]; then 
+    
+
+      cd  $ANSIBLE_DIR
+
+      git pull
+
+  else 
+
+      git clone REPO_URL
+
+      cd  $ANSIBLE_DIR
+
+  fi
+
+  ansible-playbook -e component=$component main.yaml
+
+
