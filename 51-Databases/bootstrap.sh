@@ -40,7 +40,7 @@
 
   else 
 
-      git clone REPO_URL
+      git clone $REPO_URL
 
       cd  $ANSIBLE_DIR
 
