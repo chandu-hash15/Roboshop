@@ -14,7 +14,7 @@
 #   -e "component=$component" \
 #   main.yaml -vv
 
- REPO_URL=https://github.com/chandu-hash15/Terra_Ansi_Roles-_Integration.git
+ REPO_URL=https://github.com/chandu-hash15/Terra_Ansi_Roles_Integration.git
 
  REPO_DIR=/opt/roboshop/ansible
 
