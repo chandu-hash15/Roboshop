@@ -1,10 +1,10 @@
 resource "aws_security_group_rule" "backend_alb_accepting_bastion" {
-  type                     = "ingress"
-  security_group_id        = local.backend_alb_sg_id
+  type              = "ingress"
+  security_group_id = local.backend_alb_sg_id
   source_security_group_id = local.bastion_sg_id
-  from_port                = 80
-  to_port                  = 80
-  protocol                 = "tcp"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
 }
 
 
@@ -19,31 +19,39 @@ resource "aws_security_group_rule" "bastion_accepting_laptop" {
 
 
 resource "aws_security_group_rule" "mongodb_accepting_bastion" {
-  type                     = "ingress"
-  security_group_id        = local.mongodb_sg_id
+  type              = "ingress"
+  security_group_id = local.mongodb_sg_id
   source_security_group_id = local.bastion_sg_id
-  from_port                = 22
-  to_port                  = 22
-  protocol                 = "tcp"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
 }
 
 
 resource "aws_security_group_rule" "redis_accepting_bastion" {
-  type                     = "ingress"
-  security_group_id        = local.redis_sg_id
+  type              = "ingress"
+  security_group_id = local.redis_sg_id
   source_security_group_id = local.bastion_sg_id
-  from_port                = 22
-  to_port                  = 22
-  protocol                 = "tcp"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
 }
 
 
 resource "aws_security_group_rule" "rabbitmq_accepting_bastion" {
-  type                     = "ingress"
-  security_group_id        = local.rabbitmq_sg_id
+  type              = "ingress"
+  security_group_id = local.rabbitmq_sg_id
   source_security_group_id = local.bastion_sg_id
-  from_port                = 22
-  to_port                  = 22
-  protocol                 = "tcp"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
 }
 
+resource "aws_security_group_rule" "mysql_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.mysql_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
