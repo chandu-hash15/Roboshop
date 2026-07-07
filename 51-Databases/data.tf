@@ -57,3 +57,7 @@ data "aws_ssm_parameter" "rabbitmq_sg_id" {
   name = "/${var.Project}/${var.Environment}/rabbitmq/sg_id"
 }
 
+data "aws_ssm_parameter" "mysql_sg_id" {
+  name = "/${var.Project}/${var.Environment}/mysql/sg_id"
+}
+
