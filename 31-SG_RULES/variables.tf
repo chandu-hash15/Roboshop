@@ -1,10 +1,10 @@
 variable "Project" {
 
-    default = "PCR"
+  default = "PCR"
 }
 
-variable"Environment" {
-    default = "Dev"
+variable "Environment" {
+  default = "Dev"
 }
 
 
