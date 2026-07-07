@@ -48,6 +48,6 @@
 
   fi
 
-  ansible-playbook -e component=$component environment=$environment main.yaml
+  ansible-playbook -e "component=$component environment=$environment" main.yaml
 
 
