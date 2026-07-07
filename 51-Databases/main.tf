@@ -2,46 +2,46 @@
 # MONGODB
 # ==========================================================
 
-resource "aws_instance" "mongo_db" {
-  ami                    = local.ami_id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [local.mongodb_sg_id]
-  subnet_id              = local.database_subnet_id
-
-  tags = merge(
-    local.tags,
-    {
-      Name = "mongodb"
-    }
-  )
-}
-
-resource "terraform_data" "mongodb" {
-
-  triggers_replace = [
-    aws_instance.mongo_db.id
-  ]
-
-  connection {
-    type     = "ssh"
-    user     = "ec2-user"
-    password = "DevOps321"
-    host     = aws_instance.mongo_db.private_ip
-  }
-
-  provisioner "file" {
-    source      = "bootstrap.sh"
-    destination = "/tmp/bootstrap.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh mongodb"
-    ]
-  }
-
-} # ✅ CLOSED mongodb BLOCK
+# resource "aws_instance" "mongo_db" {
+#   ami                    = local.ami_id
+#   instance_type          = var.instance_type
+#   vpc_security_group_ids = [local.mongodb_sg_id]
+#   subnet_id              = local.database_subnet_id
+#
+#   tags = merge(
+#     local.tags,
+#     {
+#       Name = "mongodb"
+#     }
+#   )
+# }
+#
+# resource "terraform_data" "mongodb" {
+#
+#   triggers_replace = [
+#     aws_instance.mongo_db.id
+#   ]
+#
+#   connection {
+#     type     = "ssh"
+#     user     = "ec2-user"
+#     password = "DevOps321"
+#     host     = aws_instance.mongo_db.private_ip
+#   }
+#
+#   provisioner "file" {
+#     source      = "bootstrap.sh"
+#     destination = "/tmp/bootstrap.sh"
+#   }
+#
+#   provisioner "remote-exec" {
+#     inline = [
+#       "chmod +x /tmp/bootstrap.sh",
+#       "sudo sh /tmp/bootstrap.sh mongodb"
+#     ]
+#   }
+#
+# } # ✅ CLOSED mongodb BLOCK
 
 
 # ==========================================================
@@ -136,7 +136,6 @@ resource "terraform_data" "mongodb" {
 # } # ✅ CLOSED rabbitmq BLOCK
 
 
-
 # ==========================================================
 # MYSQL
 # ==========================================================
@@ -146,7 +145,7 @@ resource "aws_instance" "mysql" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id              = local.database_subnet_id
-  iam_instance_profile = aws_iam_instance_profile.mysql.name
+  iam_instance_profile   = aws_iam_instance_profile.mysql.name
 
   tags = merge(
     local.tags,
@@ -171,7 +170,7 @@ resource "terraform_data" "mysql" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.mongo_db.private_ip
+    host     = aws_instance.mysql.private_ip
   }
 
   provisioner "file" {
