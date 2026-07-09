@@ -8,6 +8,8 @@
 
 # echo "Installing Ansible..."
  dnf install ansible -y
+ dnf install python3-pip -y
+ python3 -m pip install boto3 botocore
 
 # echo "Running ansible-pull for $component..."
 
