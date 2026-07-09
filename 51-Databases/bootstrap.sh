@@ -4,7 +4,7 @@
 
  component=$1
 
- environment=$2
+ deployment_env=$2
 
 # echo "Installing Ansible..."
  dnf install ansible -y
@@ -48,6 +48,8 @@
 
   fi
 
-  ansible-playbook -e "component=$component environment=$environment" main.yaml
+  ansible-playbook \
+  -e "component=$component deployment_env=$deployment_env" \
+  main.yaml
 
 
