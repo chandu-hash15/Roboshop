@@ -189,10 +189,10 @@ resource "aws_instance" "mysql" {
 # }
 
 resource "aws_route53_record" "mongodb" {
-  zone_id = var.hosted_zone
-  name    = "mongodb.${var.environment}.${var.domain_name}
-  type    = "A"
-  ttl     = 1
-  records = [aws_instance.mongo_db.private_ip]
+  zone_id         = var.hosted_zone
+  name            = "mongodb.${var.Environment}.${var.domain_name}"
+  type            = "A"
+  ttl             = 1
+  records         = [aws_instance.mongo_db.private_ip]
   allow_overwrite = true
-} 
+}
