@@ -26,6 +26,6 @@ data "aws_ssm_parameter" "mysql_sg_id" {
 
 
 data "aws_ssm_parameter" "catalogue_sg_id" {
-  name = "/${var.Project}/${var.Environment}/mysql/sg_id"
+  name = "/${var.Project}/${var.Environment}/catalogue/sg_id"
 }
 #test
