@@ -40,6 +40,7 @@ resource "terraform_data" "mongodb" {
       "sudo sh /tmp/bootstrap.sh mongodb dev dev"
     ]
   }
+}
 
 # } # ✅ CLOSED mongodb BLOCK
 
