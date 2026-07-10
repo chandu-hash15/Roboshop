@@ -141,20 +141,20 @@ resource "terraform_data" "mongodb" {
 # MYSQL
 # ==========================================================
 
-resource "aws_instance" "mysql" {
-  ami                    = local.ami_id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [local.mysql_sg_id]
-  subnet_id              = local.database_subnet_id
-  iam_instance_profile   = aws_iam_instance_profile.mysql.name
+# resource "aws_instance" "mysql" {
+#   ami                    = local.ami_id
+#   instance_type          = var.instance_type
+#   vpc_security_group_ids = [local.mysql_sg_id]
+#   subnet_id              = local.database_subnet_id
+#   iam_instance_profile   = aws_iam_instance_profile.mysql.name
 
-  tags = merge(
-    local.tags,
-    {
-      Name = "mysql"
-    }
-  )
-}
+#   tags = merge(
+#     local.tags,
+#     {
+#       Name = "mysql"
+#     }
+#   )
+# }
 
 # resource "aws_iam_instance_profile" "mysql" {
 #   name = "mysql"
