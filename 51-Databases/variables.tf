@@ -15,3 +15,13 @@ variable "Project" {
 }
 
 
+variable "hosted_zone" {
+
+    default = "Z01236531AIID4R7SAT1Q"
+}
+
+variable "domain_name" {
+
+    default = "mitha.fun"
+}
+

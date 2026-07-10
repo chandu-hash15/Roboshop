@@ -6,6 +6,8 @@
 
  deployment_env=$2
 
+environment=$3
+
 # echo "Installing Ansible..."
  dnf install ansible -y
  dnf install python3-pip -y
@@ -51,7 +53,7 @@
   fi
 
   ansible-playbook \
-  -e "component=$component deployment_env=$deployment_env" \
+  -e "component=$component deployment_env=$deployment_env env=$environment" \
   main.yaml
 
 

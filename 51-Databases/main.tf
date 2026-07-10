@@ -2,45 +2,45 @@
 # MONGODB
 # ==========================================================
 
-# resource "aws_instance" "mongo_db" {
-#   ami                    = local.ami_id
-#   instance_type          = var.instance_type
-#   vpc_security_group_ids = [local.mongodb_sg_id]
-#   subnet_id              = local.database_subnet_id
-#
-#   tags = merge(
-#     local.tags,
-#     {
-#       Name = "mongodb"
-#     }
-#   )
-# }
-#
-# resource "terraform_data" "mongodb" {
-#
-#   triggers_replace = [
-#     aws_instance.mongo_db.id
-#   ]
-#
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.mongo_db.private_ip
-#   }
-#
-#   provisioner "file" {
-#     source      = "bootstrap.sh"
-#     destination = "/tmp/bootstrap.sh"
-#   }
-#
-#   provisioner "remote-exec" {
-#     inline = [
-#       "chmod +x /tmp/bootstrap.sh",
-#       "sudo sh /tmp/bootstrap.sh mongodb"
-#     ]
-#   }
-#
+resource "aws_instance" "mongo_db" {
+  ami                    = local.ami_id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [local.mongodb_sg_id]
+  subnet_id              = local.database_subnet_id
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "mongodb"
+    }
+  )
+}
+
+resource "terraform_data" "mongodb" {
+
+  triggers_replace = [
+    aws_instance.mongo_db.id
+  ]
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.mongo_db.private_ip
+  }
+
+  provisioner "file" {
+    source      = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/bootstrap.sh",
+      "sudo sh /tmp/bootstrap.sh mongodb dev dev"
+    ]
+  }
+
 # } # ✅ CLOSED mongodb BLOCK
 
 
@@ -155,34 +155,43 @@ resource "aws_instance" "mysql" {
   )
 }
 
-resource "aws_iam_instance_profile" "mysql" {
-  name = "mysql"
-  role = "EC2SSMParameterRead"
-}
+# resource "aws_iam_instance_profile" "mysql" {
+#   name = "mysql"
+#   role = "EC2SSMParameterRead"
+# }
 
-resource "terraform_data" "mysql" {
+# resource "terraform_data" "mysql" {
 
-  triggers_replace = [
-    aws_instance.mysql.id
-  ]
+#   triggers_replace = [
+#     aws_instance.mysql.id
+#   ]
 
-  connection {
-    type     = "ssh"
-    user     = "ec2-user"
-    password = "DevOps321"
-    host     = aws_instance.mysql.private_ip
-  }
+#   connection {
+#     type     = "ssh"
+#     user     = "ec2-user"
+#     password = "DevOps321"
+#     host     = aws_instance.mysql.private_ip
+#   }
 
-  provisioner "file" {
-    source      = "bootstrap.sh"
-    destination = "/tmp/bootstrap.sh"
-  }
+#   provisioner "file" {
+#     source      = "bootstrap.sh"
+#     destination = "/tmp/bootstrap.sh"
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh mysql dev"
-    ]
-  }
+#   provisioner "remote-exec" {
+#     inline = [
+#       "chmod +x /tmp/bootstrap.sh",
+#       "sudo sh /tmp/bootstrap.sh mysql dev"
+#     ]
+#   }
 
-}
+# }
+
+resource "aws_route53_record" "mongodb" {
+  zone_id = var.hosted_zone
+  name    = "mongodb.${var.environment}.${var.domain_name}
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mongo_db.private_ip]
+  allow_overwrite = true
+} 
