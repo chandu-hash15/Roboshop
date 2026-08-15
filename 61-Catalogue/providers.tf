@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
       version = "6.31.0"
     }
   }
   backend "s3" {
-    bucket       = "chathrun-mysgrules-module"
-    key          = "chathrun-robosgrules-module"
-    region       = "us-east-1"
+    bucket = "chathrun-catalogue-module"
+    key    = "chathrun-robodatabases-module"
+    region = "us-east-1"
     use_lockfile = true
   }
 }
@@ -17,3 +17,4 @@ provider "aws" {
   region = "us-east-1"
 
 }
+

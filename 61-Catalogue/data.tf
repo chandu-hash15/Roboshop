@@ -43,4 +43,8 @@ data "aws_ssm_parameter" "private_subnet-2_id" {
     name = "/${var.Project}/${var.Environment}/private_subnet_1"
 }
 
+data "aws_ssm_parameter" "vpc_id" {
+ name = "/${var.Project}/${var.Environment}/vpc_id"
+}
+
 

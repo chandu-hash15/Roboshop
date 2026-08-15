@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "chathrun-myvpc-module"
+    bucket = "chathrun-mybackendalb-module"
     key    = "chathrun-backend-alb-module"
     region = "us-east-1"
     use_lockfile = true
