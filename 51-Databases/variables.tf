@@ -17,7 +17,7 @@ variable "Project" {
 
 variable "hosted_zone" {
 
-    default = "Z01236531AIID4R7SAT1Q"
+    default = "Z0031038125ET95THHIZA"
 }
 
 variable "domain_name" {
