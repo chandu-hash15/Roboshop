@@ -1,4 +1,4 @@
-resource "aws_lb" "backend_alb" {
+resource "aws_lb" "backend_alb"{
   name               = "${local.common_name}-backend-alb"
   internal           = true
   load_balancer_type = "application"
@@ -34,5 +34,17 @@ resource "aws_lb_listener" "backend_end" {
       message_body = "Hi i am from backend ALB"
       status_code  = "200"
     }
+  }
+}
+
+resource "aws_route53_record" "backend_alb" {
+  zone_id = var.hosted_zone
+  name    = "*.backed-alb-${var.Environment}.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.backend_alb.dns_name
+    zone_id                = aws_lb.backend_alb.zone_id
+    evaluate_target_health = true
   }
 }
