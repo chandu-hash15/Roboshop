@@ -106,7 +106,7 @@ resource "aws_lb_target_group" "catalogue" {
     }
   }
 
-}
+
 
 resource "aws_autoscaling_group" "catalogue" {
   name                      = "${local.common_name}-catalogue"
