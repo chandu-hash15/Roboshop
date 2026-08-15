@@ -96,7 +96,7 @@ resource "aws_lb_target_group" "catalogue" {
 
     tags = merge (
 
-      local.common_name,
+      local.tags,
       {
         Name = "${local.common_name}-catalogue"
       }
@@ -125,7 +125,7 @@ resource "aws_autoscaling_group" "catalogue" {
 
   dynamic "tag" {
     for_each = merge(
-      local.common_name,
+      local.tags,
       {
         Name = "${local.common_name}-catalogue"
       }
