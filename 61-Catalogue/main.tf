@@ -123,6 +123,14 @@ resource "aws_autoscaling_group" "catalogue" {
   vpc_zone_identifier       = local.private_subnet_ids
   target_group_arns = [aws_lb_target_group.catalogue.arn]
 
+   instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    triggers = ["launch_template"]
+  }
+
   dynamic "tag" {
     for_each = merge(
       local.tags,
@@ -151,6 +159,21 @@ resource "aws_autoscaling_policy" "catalogue" {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
     target_value = 75.0
+  }
+}
+
+resource "terraform_data" "catalogue_local" {
+
+  triggers_replace = [
+    aws_instance.catalogue.id
+  ]
+
+  depends_on = [
+    aws_autoscaling_policy.catalogue
+  ]
+
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
   }
 }
 
