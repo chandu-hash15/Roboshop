@@ -190,7 +190,7 @@ resource "terraform_data" "mongodb" {
 
 resource "aws_route53_record" "mongodb" {
   zone_id         = var.hosted_zone
-  name            = "mongodb.${var.Environment}.${var.domain_name}"
+  name            = "mongodb.backend-alb-${var.Environment}.${var.domain_name}"
   type            = "A"
   ttl             = 1
   records         = [aws_instance.mongo_db.private_ip]
