@@ -5,7 +5,7 @@ resource "aws_lb" "frontend_alb" {
   security_groups    = [local.frontend_alb_sg_id]
   subnets            = local.public_subnets
 
-  enable_deletion_protection = true
+  
 
     tags = merge(
 

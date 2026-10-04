@@ -10,10 +10,10 @@ variable"Environment" {
 
 variable "hosted_zone" {
 
-    default = "Z0031038125ET95THHIZA"
+    default = "Z030162031DXB5ORBKBZA"
 }
 
 variable "domain_name" {
 
-    default = "mitha.fun"
+    default = "chathrun.fun"
 }
