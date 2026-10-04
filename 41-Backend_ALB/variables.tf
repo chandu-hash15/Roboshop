@@ -15,5 +15,5 @@ variable "hosted_zone" {
 
 variable "domain_name" {
 
-    default = "mitha.fun"
+    default = "chathrun.fun"
 }
