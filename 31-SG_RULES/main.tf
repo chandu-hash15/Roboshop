@@ -47,6 +47,8 @@ resource "aws_security_group_rule" "rabbitmq_accepting_bastion" {
   protocol          = "tcp"
 }
 
+
+
 resource "aws_security_group_rule" "mysql_accepting_bastion" {
   type              = "ingress"
   security_group_id = local.mysql_sg_id
@@ -97,6 +99,15 @@ resource "aws_security_group_rule" "shipping_accepting_bastion" {
 resource "aws_security_group_rule" "paymment_accepting_bastion" {
   type              = "ingress"
   security_group_id = local.payment_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+resource "aws_security_group_rule" "frontend_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.frontend_alb_sg_id
   source_security_group_id = local.bastion_sg_id
   from_port         = 22
   to_port           = 22
