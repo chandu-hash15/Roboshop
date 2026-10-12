@@ -157,8 +157,8 @@ resource "aws_security_group_rule" "shipping_accepting_mysql" {
   type              = "ingress"
   security_group_id = local.shipping_sg_id
   source_security_group_id = local.mysql_sg_id
-  from_port         = 3306
-  to_port           = 3306
+  from_port         = 8080
+  to_port           = 8080
   protocol          = "tcp"
 }
 
@@ -177,6 +177,16 @@ resource "aws_security_group_rule" "redis_accepting_cart" {
   type              = "ingress"
   security_group_id = local.redis_sg_id
   source_security_group_id = local.cart_sg_id
+  from_port         = 6379
+  to_port           = 6379
+  protocol          = "tcp"
+}
+
+
+resource "aws_security_group_rule" "redis_accepting_user" {
+  type              = "ingress"
+  security_group_id = local.redis_sg_id
+  source_security_group_id = local.user_sg_id
   from_port         = 6379
   to_port           = 6379
   protocol          = "tcp"
