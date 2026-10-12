@@ -50,5 +50,9 @@ data "aws_ssm_parameter" "frontend_alb_sg_id" {
   name = "/${var.Project}/${var.Environment}/frontend_alb/sg_id"
 }
 
+data "aws_ssm_parameter" "frontend_sg_id" {
+  name = "/${var.Project}/${var.Environment}/frontend/sg_id"
+}
+
 
 
