@@ -140,3 +140,32 @@ resource "aws_security_group_rule" "frontend_alb_accepting_public" {
   security_group_id        = local.frontend_alb_sg_id
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+resource "aws_security_group_rule" "mysql_accepting_shipping" {
+  type              = "ingress"
+  security_group_id = local.mysql_sg_id
+  source_security_group_id = local.shipping_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+
+resource "aws_security_group_rule" "rabbitmq_accepting_payment" {
+  type              = "ingress"
+  security_group_id = local.rabbitmq_sg_id
+  source_security_group_id = local.payment_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+
+resource "aws_security_group_rule" "redis_accepting_cart" {
+  type              = "ingress"
+  security_group_id = local.redis_sg_id
+  source_security_group_id = local.cart_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
