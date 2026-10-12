@@ -66,6 +66,49 @@ resource "aws_security_group_rule" "catalogue_accepting_bastion" {
   protocol          = "tcp"
 }
 
+resource "aws_security_group_rule" "cart_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.cart_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+resource "aws_security_group_rule" "user_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.user_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+resource "aws_security_group_rule" "shipping_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.shipping_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+
+resource "aws_security_group_rule" "paymment_accepting_bastion" {
+  type              = "ingress"
+  security_group_id = local.payment_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+}
+
+
+
+
+
+
+
 resource "aws_security_group_rule" "mongodb_accepting_catalogue" {
   type                     = "ingress"
   from_port                = 27017
