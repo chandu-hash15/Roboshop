@@ -198,14 +198,6 @@ resource "aws_route53_record" "mongodb" {
   allow_overwrite = true
 }
 
-resource "aws_route53_record" "mongodb" {
-  zone_id         = var.hosted_zone
-  name            = "mongodb.backend-alb-${var.Environment}.${var.domain_name}"
-  type            = "A"
-  ttl             = 1
-  records         = [aws_instance.mongo_db.private_ip]
-  allow_overwrite = true
-}
 
 
 resource "aws_route53_record" "redis" {
