@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "mongodb_accepting_bastion" {
 }
 
 #################### MONGODB ACCEPTING USER ######################
-resource "aws_security_group_rule" "mongodb_accepting_catalogue" {
+resource "aws_security_group_rule" "mongodb_accepting_user" {
   type                     = "ingress"
   from_port                = 27017
   to_port                  = 27017
@@ -32,7 +32,7 @@ resource "aws_security_group_rule" "mongodb_accepting_catalogue" {
 }
 
 #################### Redis Accepting Bastion #######################
-resource "aws_security_group_rule" "redis_accepting_catalogue" {
+resource "aws_security_group_rule" "redis_accepting_bastion" {
   type                     = "ingress"
   from_port                = 22
   to_port                  = 22
@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "redis_accepting_user" {
 
 ####################### Redis Accepting Cart ##############################
 
-resource "aws_security_group_rule" "redis_accepting_user" {
+resource "aws_security_group_rule" "redis_accepting_cart" {
   type                     = "ingress"
   from_port                = 6379
   to_port                  = 6379
@@ -175,7 +175,7 @@ resource "aws_security_group_rule" "cart_accepting_bastion" {
 
 
 ################## Cart Accepting Backend_Alb ####################
-resource "aws_security_group_rule" "cart_accepting_bastion" {
+resource "aws_security_group_rule" "cart_accepting_backend_alb" {
   type                     = "ingress"
   from_port                = 8080
   to_port                  = 8080
@@ -224,7 +224,7 @@ resource "aws_security_group_rule" "shipping_accepting_backend_alb" {
 
 ################## Backend_Alb Accepting Shipping ####################
 
-resource "aws_security_group_rule" "bakend_alb_accepting_cart" {
+resource "aws_security_group_rule" "bakend_alb_accepting_shipping" {
   type                     = "ingress"
   from_port                = 80
   to_port                  = 80
@@ -247,7 +247,7 @@ resource "aws_security_group_rule" "payment_accepting_bastion" {
 
 
 ################## Payment Accepting Backend_Alb ####################
-resource "aws_security_group_rule" "shipping_accepting_backend_alb" {
+resource "aws_security_group_rule" "payment_accepting_backend_alb" {
   type                     = "ingress"
   from_port                = 8080
   to_port                  = 8080
